@@ -2,6 +2,7 @@ angular.module('wayfare.form', [])
 
 .controller('FormController', function ($scope, $http) {
   
+
   $scope.data = {
   	destinations: [
 	  	{
@@ -16,12 +17,26 @@ angular.module('wayfare.form', [])
   	}
   };
 
+  var test = $scope.data.destinations[0];
+  var currentLat = $scope.data.location.latitude;
+  var currentLong = $scope.data.location.longitude;
+
+  $scope.request = {
+  	serverToken: 'JksNcozbSKYhHTP5LYlQfe1bW_yALIU3brH6S_7b',
+  	url: 'https://api.uber.com/v1/estimates/price',
+  	startLat: $scope.location.latitude,
+  	startLong: $scope.location.longitude,
+  	endLat: test.latitude,
+  	endLong: test.longitude,
+  };
+
+
 	if ("geolocation" in navigator) {
 	  // geolocation is available
 	  navigator.geolocation.getCurrentPosition(function (position) {
 
-	    $scope.data.location.latitude = position.coords.latitude;
-	    $scope.data.location.longitude = position.coords.longitude;
+	    currentLat = position.coords.latitude;
+	    currentLong = position.coords.longitude;
 
 	  	console.log($scope.data);
 	  });
@@ -31,8 +46,21 @@ angular.module('wayfare.form', [])
 	}
 
 
-  $scope.postLoc = function(loc){
-    console.log("great scott! You entered:", loc);
+  $scope.postLoc = function(){
+  	$http({
+  		method: 'GET',
+  		url: $scope.request.url,
+  		params: {
+  			start_latitude: $scope.request.startLat,
+  			start_longitude: $scope.request.startLong,
+  			end_latitude: $scope.request.endLat,
+  			end_longitude: $scope.request.endLong
+  		}
+  	}).then(function (response) {
+  		console.log(response);
+  	});
+
+    console.log("great scott!");
     window.loc = loc;
   }
 
