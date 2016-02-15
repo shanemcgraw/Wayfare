@@ -1,8 +1,9 @@
 <div class="container" ng-app="wayfare.form">
-	
-	<input ng-model="newLoc" ng-controller="FormController" placeholder="Enter your location here...">
+	<form>
 		
-	</input>
+		<input ng-model="newLoc" placeholder="Enter your location here..."/>
 
-	<button ng-click="postLoc">Enter</button>
+		<button ng-click="postLoc(newLoc)">Enter</button>
+	</form>
 </div>
+

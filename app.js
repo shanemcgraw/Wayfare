@@ -1,11 +1,13 @@
 'use strict';
+angular.module('wayfare', [
+	'wayfare.form',
+	'ngRoute'
+	])
 
-
-angular.module('wayfare', ['wayfare.form'])
 .config(function ($routeProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: 'forms/form.html',
+      templateUrl: '../app/forms/forms.html',
       controller: 'FormController',
     })
     .otherwise({

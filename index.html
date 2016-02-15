@@ -1,23 +1,28 @@
 <!DOCTYPE html>
-<html ng-app='Wayfare'>
+<html>
   <head>
     <meta charset="utf-8" />
     <title>Wayfare</title>
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
   </head>
   <body>
-    <div ng-app="">
+    <div ng-app="wayfare">
       
       <h1>Wayfare</h1>
       
-      <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
-      <div ng-view=""></div>
+      <!-- the ng-view directive is where our templates will be loaded into when navigated to -->
+      <div ng-view></div>
 
-      <script src="lib/angular/angular.js"></script>
-      <script src="lib/angular-route/angular-route.js"></script>
+      <script src="../bower_components/angular/angular.js"></script>
+      <script src="../bower_components/angular-route/angular-route.js"></script>
 
-      <script src="app/forms/forms.js"></script>
-      <script src="app/app.js"></script>
+      <script src="forms/forms.js"></script>
+
+      <script src="forms/forms.html"></script>
+
+      <!-- Insert all the other controllers here-->
+
+      <script src="app.js"></script>
     </div>
   </body>
 </html>
