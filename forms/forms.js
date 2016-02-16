@@ -97,9 +97,13 @@ angular.module('wayfare.form', [])
 		  				end_latitude: loc.latitude,
 		  				end_longitude: loc.longitude
 		  			}
-		  		}).then(function (response) {
+		  		})
+		  		.then(function (response) {
 		  			loc.timeEstimate = (response.data.prices[0].duration / 60) + " minutes";
 		  			loc.priceEstimate = (response.data.prices[0].estimate + " " + response.data.prices[0].currency_code);
+		  		})
+		  		.catch(function(err){
+		  			console.error(err);
 		  		});
 	  		});
 	  	}
