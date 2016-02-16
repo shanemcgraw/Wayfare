@@ -1,9 +1,15 @@
 <div class="container" ng-app="wayfare.form">
-	<form>
-		
-		<p>{{statusMessage}}</p>
 
-		<button ng-disabled="notReady" ng-click="postLoc()">Wayfare!</button>
-	</form>
+<button ng-disabled="notReady" ng-click="postLoc()">Tartine!</button>
+
+	<div class="interface">
+		<p>{{statusMessage}}</p>
+	</div>
+
+	<div class="output">
+		<h3>Time to Tartine:</h3> <span>{{tartineTime}}</span>
+		<h3>Dollars for Tartine:</h3> <span>{{tartineMones}}</span>
+	</div>
+
 </div>
 

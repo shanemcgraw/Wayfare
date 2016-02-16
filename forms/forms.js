@@ -65,6 +65,8 @@ angular.module('wayfare.form', [])
 	  			}
 	  		}).then(function (response) {
 	  			console.log(response);
+	  			$scope.tartineTime = (response.data.prices[0].duration / 60) + " minutes";
+	  			$scope.tartineMones = (response.data.prices[0].estimate + " " + response.data.prices[0].currency_code);
 	  		});
 	  	}
 	  	
