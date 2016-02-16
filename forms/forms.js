@@ -78,7 +78,7 @@ angular.module('wayfare.form', [])
 
 	  	$scope.$apply(function(){
 	  		$scope.number = 0;
-	  		$scope.statusMessage = "The four winds are at your command!";
+	  		$scope.statusMessage = "Avast!";
 	  		$scope.notReady = false;
 	  	});
 
@@ -104,8 +104,6 @@ angular.module('wayfare.form', [])
 	  		});
 	  	}
 
-	  	window.datas = $scope.data;
-	  	
 	  });
 
 	} else {
