@@ -1,6 +1,6 @@
 angular.module('wayfare.form', [])
 
-.controller('FormController', function ($scope, $http) {
+.controller('FormController', function ($scope, $http, Uber) {
   
 
   $scope.data = {
@@ -50,7 +50,6 @@ angular.module('wayfare.form', [])
   	}
   };
 
-  var test = $scope.data.destinations[0];
   var currentLat;
   var currentLong;
   
@@ -62,8 +61,8 @@ angular.module('wayfare.form', [])
   	url: 'https://api.uber.com/v1/estimates/price',
   	startLat: currentLat,
   	startLong: currentLong,
-  	endLat: test.latitude,
-  	endLong: test.longitude,
+  	endLat: null,
+  	endLong: null,
   };
 
 	if ("geolocation" in navigator) {
@@ -78,35 +77,13 @@ angular.module('wayfare.form', [])
 
 	  	$scope.$apply(function(){
 	  		$scope.number = 0;
-	  		$scope.statusMessage = "Avast!";
+	  		$scope.statusMessage = "We have a heading!";
 	  		$scope.notReady = false;
 	  	});
 
 	  	$scope.postLoc = function () {
-	  		$scope.data.destinations.forEach(function(loc, i){
-		  		$http({
-		  			method: 'GET',
-		  			url: $scope.request.url,
-		  			headers: {
-		  				Authorization: 'Token ' + $scope.request.server_token
-		  			},
-		  			params: {
-		  				server_token: $scope.request.server_token,
-		  				start_latitude: currentLat,
-		  				start_longitude: currentLong,
-		  				end_latitude: loc.latitude,
-		  				end_longitude: loc.longitude
-		  			}
-		  		})
-		  		.then(function (response) {
-		  			loc.timeEstimate = (response.data.prices[0].duration / 60) + " minutes";
-		  			loc.priceEstimate = (response.data.prices[0].estimate + " " + response.data.prices[0].currency_code);
-		  		})
-		  		.catch(function(err){
-		  			console.error(err);
-		  		});
-	  		});
-	  	}
+	  		Uber.getRide($scope.data.destinations, currentLat, currentLong);
+	  	};
 
 	  });
 
