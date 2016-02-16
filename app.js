@@ -1,7 +1,8 @@
 'use strict';
 angular.module('wayfare', [
 	'wayfare.form',
-	'ngRoute'
+	'ngRoute',
+  'wayfare.map'
 	])
 
 .config(function ($routeProvider) {
