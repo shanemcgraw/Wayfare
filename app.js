@@ -1,8 +1,8 @@
 'use strict';
 angular.module('wayfare', [
+  'ngMap',
 	'wayfare.form',
 	'ngRoute',
-  'wayfare.map'
 	])
 
 .config(function ($routeProvider) {
@@ -14,6 +14,16 @@ angular.module('wayfare', [
     .otherwise({
       redirectTo: '/'
     });
+})
+
+.controller('HeatmapController', function (ngMap) {
+  var heatmap, context = this;
+
+  ngMap.getMap()
+  .then(function (map) {
+    context.map = map;
+    heatmap = context.map.heatmapLayers.foo;
+  });
 })
 
 //build services!
