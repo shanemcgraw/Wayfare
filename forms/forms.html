@@ -6,6 +6,16 @@
 		<p>{{statusMessage}}</p>
 	</div>
 
+	<div class="container" ng-controller="HeatmapController as vm" ng-app="wayfare.map">
+	  <div id="panel">
+	    <button ng-click="vm.changeRadius()">Change radius</button>
+	    <button ng-click="vm.changeOpacity()">Change opacity</button>
+	  </div>
+	  <ng-map zoom="13" center="{{data.location.latitude}}, {{data.location.longitude}}" map-type-id="ROADMAP">
+	    <heatmap-layer id="foo" data="taxiData"></heatmap>
+	  </ng-map>
+	</div>
+
 	
 	
 	<div class="output" ng-repeat="place in data.destinations">
@@ -15,6 +25,6 @@
 		<strong>Fare Estimate: </strong> {{place.priceEstimate}}
 		<br>
 		<br>
-	</div>
+	</div> 
 
 </div>
