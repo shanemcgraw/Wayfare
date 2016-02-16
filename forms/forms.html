@@ -1,9 +1,9 @@
 <div class="container" ng-app="wayfare.form">
 	<form>
 		
-		<p>Getting your location...</p>
+		<p>{{statusMessage}}</p>
 
-		<button ng-click="postLoc()">Wayfare!</button>
+		<button ng-disabled="notReady" ng-click="postLoc()">Wayfare!</button>
 	</form>
 </div>
 
