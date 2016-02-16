@@ -1,14 +1,14 @@
 <div class="container" ng-app="wayfare.form">
 
-<button ng-disabled="notReady" ng-click="postLoc()">Tartine!</button>
+<button ng-disabled="notReady" ng-click="postLoc()">Shove off!</button>
 
 	<div class="interface">
 		<p>{{statusMessage}}</p>
 	</div>
 
-	<div class="output">
-		<h3>Time to Tartine:</h3> <span>{{tartineTime}}</span>
-		<h3>Dollars for Tartine:</h3> <span>{{tartineMones}}</span>
+	<div class="output" ng-repeat"destination in data">
+		<h3>Time {{destination.name}}:</h3> <span>{{}}</span>
+		<h3>Dollars {{}}:</h3> <span>{{}}</span>
 	</div>
 
 </div>
