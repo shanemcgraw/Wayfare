@@ -41,7 +41,7 @@ angular.module('wayfare.form', [])
 		},
 		{
 			name: "Fort Mason",
-			latitude: 37.804933
+			latitude: 37.804933,
 			longitude: -122.430329
 		}],
   	location: {
@@ -77,30 +77,34 @@ angular.module('wayfare.form', [])
 		  $scope.data.location.longitude = currentLong;
 
 	  	$scope.$apply(function(){
+	  		$scope.number = 0;
 	  		$scope.statusMessage = "The four winds are at your command!";
 	  		$scope.notReady = false;
 	  	});
 
 	  	$scope.postLoc = function () {
-	  		$http({
-	  			method: 'GET',
-	  			url: $scope.request.url,
-	  			headers: {
-	  				Authorization: 'Token ' + $scope.request.server_token
-	  			},
-	  			params: {
-	  				server_token: $scope.request.server_token,
-	  				start_latitude: currentLat,
-	  				start_longitude: currentLong,
-	  				end_latitude: $scope.request.endLat,
-	  				end_longitude: $scope.request.endLong
-	  			}
-	  		}).then(function (response) {
-	  			console.log(response);
-	  			$scope.tartineTime = (response.data.prices[0].duration / 60) + " minutes";
-	  			$scope.tartineMones = (response.data.prices[0].estimate + " " + response.data.prices[0].currency_code);
+	  		$scope.data.destinations.forEach(function(loc, i){
+		  		$http({
+		  			method: 'GET',
+		  			url: $scope.request.url,
+		  			headers: {
+		  				Authorization: 'Token ' + $scope.request.server_token
+		  			},
+		  			params: {
+		  				server_token: $scope.request.server_token,
+		  				start_latitude: currentLat,
+		  				start_longitude: currentLong,
+		  				end_latitude: loc.latitude,
+		  				end_longitude: loc.longitude
+		  			}
+		  		}).then(function (response) {
+		  			loc.timeEstimate = (response.data.prices[0].duration / 60) + " minutes";
+		  			loc.priceEstimate = (response.data.prices[0].estimate + " " + response.data.prices[0].currency_code);
+		  		});
 	  		});
 	  	}
+
+	  	window.datas = $scope.data;
 	  	
 	  });
 
