@@ -4,25 +4,72 @@
     <meta charset="utf-8" />
     <title>Wayfare</title>
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
+    <!-- <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="//d3js.org/topojson.v1.min.js"></script> -->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-3-cTDCQZUZ8ggy9dyx5nCtSDXaPY0A0&libraries=visualization"></script> -->
+    </script>
   </head>
+
   <body>
+
+    <div id="floating-panel">
+      <button onclick="toggleHeatmap()">Toggle Heatmap</button>
+      <button onclick="changeGradient()">Change gradient</button>
+      <button onclick="changeRadius()">Change radius</button>
+      <button onclick="changeOpacity()">Change opacity</button>
+    </div>
+
     <div ng-app="wayfare">
-      
+
       <h1>Wayfare</h1>
-      
+
       <!-- the ng-view directive is where our templates will be loaded into when navigated to -->
-      <div ng-view></div>
+      <div id="map"></div>
+      <div ng-view=""></div>
+
 
       <script src="./bower_components/angular/angular.js"></script>
       <script src="./bower_components/angular-route/angular-route.js"></script>
-
       <script src="forms/forms.js"></script>
-
-      <script src="forms/forms.html"></script>
-
+      <script src="maps/maps.js"></script>
       <!-- Insert all the other controllers here-->
 
       <script src="app.js"></script>
+
+      <script>
+
+        var map, heatmap;
+
+        var initMap = function() {
+
+          map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 13,
+            center: {lat: 37.775, lng: -122.434},
+            mapTypeId: google.maps.MapTypeId.TERRAIN
+          });
+
+          heatmap = new google.maps.visualization.HeatmapLayer({
+            data: getPoints(),
+            map: map
+          });
+        }
+
+        var getPoints = function () {
+          return [
+            new google.maps.LatLng(37.782551, -122.445368),
+            new google.maps.LatLng(37.782745, -122.444586),
+            new google.maps.LatLng(37.782842, -122.443688),
+            new google.maps.LatLng(37.782919, -122.442815),
+            new google.maps.LatLng(37.782992, -122.442112),
+            new google.maps.LatLng(37.783100, -122.441461)
+          ];
+        }
+
+      </script>
+
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-3-cTDCQZUZ8ggy9dyx5nCtSDXaPY0A0&signed_in=true&libraries=visualization&callback=initMap"></script>
+
+
     </div>
   </body>
 </html>
