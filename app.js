@@ -3,6 +3,7 @@ angular.module('wayfare', [
   'ngMap',
 	'wayfare.form',
 	'ngRoute',
+  'wayfare.map'
 	])
 
 .config(function ($routeProvider) {
@@ -15,15 +16,3 @@ angular.module('wayfare', [
       redirectTo: '/'
     });
 })
-
-.controller('HeatmapController', function (NgMap) {
-  var heatmap, context = this;
-
-  NgMap.getMap()
-  .then(function (map) {
-    context.map = map;
-    heatmap = context.map.heatmapLayers.foo;
-  });
-})
-
-//build services!
