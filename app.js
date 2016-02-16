@@ -16,10 +16,10 @@ angular.module('wayfare', [
     });
 })
 
-.controller('HeatmapController', function (ngMap) {
+.controller('HeatmapController', function (NgMap) {
   var heatmap, context = this;
 
-  ngMap.getMap()
+  NgMap.getMap()
   .then(function (map) {
     context.map = map;
     heatmap = context.map.heatmapLayers.foo;
