@@ -1,0 +1,9 @@
+<div class="container" ng-controller="HeatmapController as vm" ng-app="wayfare.map">
+  <div id="panel">
+    <button ng-click="vm.changeRadius()">Change radius</button>
+    <button ng-click="vm.changeOpacity()">Change opacity</button>
+  </div>
+  <ng-map zoom="13" center="37.774546, -122.433523" map-type-id="ROADMAP">
+    <heatmap-layer id="foo" data="taxiData"></heatmap>
+  </ng-map>
+</div>

@@ -114,5 +114,4 @@ angular.module('wayfare.form', [])
 	  alert("Please ensure location services are enabled in your browser");
 	}
 
-
 });
