@@ -4,6 +4,7 @@
 
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="styles/style.css" />
+  <link href='https://fonts.googleapis.com/css?family=La+Belle+Aurore' rel='stylesheet' type='text/css'>
 
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 
@@ -18,7 +19,6 @@
   <!-- Modules loaded here -->
   <script src="app.js"></script>
   <script src="map/map.js"></script>
-  <script src="forms/forms.js"></script>
 
   </head>
   
@@ -30,28 +30,26 @@
   
   <div ng-controller="MapController as vm">
     <div >
-      <ng-map id="foo" zoom="13" center="37.774546, -122.433523" default-style="true" lazy-init="true"
-       zoom="3">
+      <ng-map id="foo" zoom="13" center="37.774546, -122.433523" default-style="true" lazy-init="true">
         <heatmap-layer id="foo" data="rideData"></heatmap>
       </ng-map>
     </div>
-
-    <button ng-click="vm.initMap('foo')">Init Map</button>
-
-    <button ng-disabled="notReady" ng-click="postLoc()">Avast</button>
-
+    
     <div class="interface">
       <p>{{statusMessage}}</p>
     </div>
 
-    
-    <div class="output" ng-repeat="place in data.destinations">
-      <h3>{{place.name}}</h3>
-      <strong>Time: </strong>{{place.timeEstimate}}
-      <br>
-      <strong>Fare Estimate: </strong> {{place.priceEstimate}}
-      <br>
-      <br>
+    <button ng-disabled="mapIncomplete" ng-click="vm.initMap('foo')">Ahoy</button>
+
+    <button ng-disabled="noHeading" ng-click="postLoc()">Avast</button>
+
+
+    <div class="output" ng-repeat="place in data.destinations | orderBy: 'low'">
+      <div class="location">
+        <div class="name">{{place.name}}</div>
+        <div class="time">Time: <span class="estimate">{{place.timeEstimate}}</span></div>
+        <div class="fare">Fare Estimate: <span class="estimate">{{place.priceEstimate}}</span></div> 
+      </div>
     </div> 
 
   </div>
