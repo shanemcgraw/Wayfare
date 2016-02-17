@@ -4,23 +4,28 @@ angular.module('ngMap')
   
   vm.initMap = function(mapId) {
     vm.map = NgMap.initMap(mapId);
+    vm.heatmap.set('radius', 40);
   }
 
   var torch = function (ride) {
     var lat = ride.latitude;
     var long = ride.longitude;
 
-    var priceAvg = Math.ceil(.5 * (parseInt(ride.high) - parseInt(ride.low)));
+    var priceAvg = Math.ceil(.5 * (parseInt(ride.high) - parseInt(ride.low))) * 10;
 
     for(var i=0; i<priceAvg; i++){
+    	var polish = (.000010 * (Math.random() * 2) + 1);
+
+    	newPoint(lat - polish, long - polish)
       newPoint(lat, long);
+      newPoint(lat + polish, long + polish)
     }
   };
 
   var newPoint = function (lat, long) {
     var newRidePoint = new google.maps.LatLng(lat, long);
     rideData.push(newRidePoint);
-    console.log(rideData.length);
+    
   };
 
   $scope.data = {
@@ -28,6 +33,11 @@ angular.module('ngMap')
 			name: "Tartine Bakery",
 			latitude: 37.761418,
 			longitude: -122.424104
+		},
+		{
+			name: "Academy of Sciences",
+			latitude: 37.769458,
+			longitude: -122.466352
 		},
 		{
 			name: "The Painted Ladies",
@@ -60,6 +70,16 @@ angular.module('ngMap')
 			longitude: -122.389238
 		},
 		{
+			name: "Lake Merced",
+			latitude: 37.723204,
+			longitude: -122.492416
+		},
+		{
+			name: "Land's End",
+			latitude: 37.784993, 
+			longitude: -122.506154
+		},
+		{
 			name: "Fort Mason",
 			latitude: 37.804933,
 			longitude: -122.430329
@@ -74,7 +94,8 @@ angular.module('ngMap')
   var currentLong;
   
 	$scope.statusMessage = "Assembling the four winds...";
-	$scope.notReady = true;
+	$scope.noHeading = true;
+	$scope.mapIncomplete = true;
 
   $scope.request = {
   	server_token: 'JksNcozbSKYhHTP5LYlQfe1bW_yALIU3brH6S_7b',
@@ -98,7 +119,7 @@ angular.module('ngMap')
 	  	$scope.$apply(function(){
 	  		$scope.number = 0;
 	  		$scope.statusMessage = "We have a heading!";
-	  		$scope.notReady = false;
+	  		$scope.noHeading = false;
 	  	});
 
 	  	$scope.postLoc = function () {
@@ -127,7 +148,9 @@ angular.module('ngMap')
 	  		    loc.high = response.data.prices[0].high_estimate;
 
 	  		    torch(loc);
-	  		    console.log(rideData);
+	  		    if(i === destinations.length - 1){
+	  		    	$scope.mapIncomplete = false;
+	  		    }
 	  		  })
 	  		  .catch(function(err){
 	  		    console.error(err);
