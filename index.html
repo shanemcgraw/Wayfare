@@ -39,25 +39,35 @@
       </ng-map>
     </div>
     
-    <div class="interface">
-      <p>{{statusMessage}}</p>
-    </div>
+    <div class="statButtons">  
 
-    <div class="buttonContainer">
+      <div class="buttonContainer">
+        
+        <button class="waves-effect waves-light btn blue-grey" ng-disabled="mapIncomplete" ng-click="vm.initMap('foo')">Sail</button>
+
+        <button class="waves-effect waves-light btn blue-grey" ng-disabled="noHeading" ng-click="postLoc()">Chart</button>
+      </div>
       
-      <button class="waves-effect waves-light btn blue-grey" ng-disabled="mapIncomplete" ng-click="vm.initMap('foo')">Ahoy</button>
+      <div class="interface">
+        <p>{{statusMessage}}</p>
+      </div>  
 
-      <button class="waves-effect waves-light btn blue-grey" ng-disabled="noHeading" ng-click="postLoc()">Avast</button>
     </div>
-
-
-    <div class="row" ng-repeat="place in data.destinations | orderBy: 'low'">
-      <div class="col s4">
+    <div class="row center align">
+      
+    <div ng-repeat="place in data.destinations | orderBy: 'low'">
+      <div class="col s3">
         <div class="name">{{place.name}}</div>
-        <div ng-hide="avasted" class="ng-hide">Time: <span class="estimate">{{place.timeEstimate}}</span></div>
-        <div ng-hide="avasted" class="ng-hide">Fare Estimate: <span class="estimate">{{place.priceEstimate}}</span></div> 
+        <div ng-hide="avasted" class="ng-hide">Time: 
+          <span class="estimate">{{place.timeEstimate}}</span>
+        </div>
+        <div ng-hide="avasted" class="ng-hide">Fare Estimate: 
+          <span class="estimate">{{place.priceEstimate}}</span>
+        </div> 
       </div>
     </div> 
+    
+    </div>
 
   </div>
 

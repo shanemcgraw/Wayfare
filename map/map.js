@@ -52,6 +52,11 @@ angular.module('ngMap')
 			longitude: -122.447252
 		},
 		{
+			name: "Ocean Beach",
+			latitude: 37.759946, 
+			longitude: -122.511662
+		},
+		{
 			name: "Coit Tower",
 			latitude: 37.802174,
 			longitude: -122.405865
@@ -70,6 +75,11 @@ angular.module('ngMap')
 			name: "Ferry Building",
 			latitude: 37.795333,
 			longitude: -122.393494
+		},
+		{
+			name: "Hayes Valley",
+			latitude: 37.776232, 
+			longitude: -122.424428
 		},
 		{
 			name: "AT&T Park",
@@ -125,7 +135,7 @@ angular.module('ngMap')
 
 	  	$scope.$apply(function(){
 	  		$scope.number = 0;
-	  		$scope.statusMessage = "Ready to chart a course...";
+	  		$scope.statusMessage = "Open ye spyglass...";
 	  		$scope.noHeading = false;
 	  	});
 
@@ -157,7 +167,7 @@ angular.module('ngMap')
 
 	  		    torch(loc);
 	  		    if(i === destinations.length - 1){
-	  		    	$scope.statusMessage = "Ready to set sail";
+	  		    	$scope.statusMessage = "Hoist the mainsail!";
 	  		    	$scope.mapIncomplete = false;
 	  		    }
 	  		  })
