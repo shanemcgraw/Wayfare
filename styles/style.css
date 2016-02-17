@@ -2,18 +2,32 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #B3D1FF;
+  background-color: #263238;
 }
 
 body {
   margin: 0;
   margin-top: 10px;
   font-family: arial, sans-serif;
+  color: #eceff1;
 }
 
 
+.buttonContainer {
+  margin: 10px 0px 20px 10px;
+}
+
+button {
+  background-color: #2F6B83;
+}
+
 div {
   display:block;
+}
+
+p{
+  color: #90a4ae;
+  margin: 0 0 0 10px;
 }
 
 .location {
@@ -22,14 +36,11 @@ div {
 }
 
 .name {
-  font-family: 'La Belle Aurore', cursive;
-  font-weight: bold;
+  font-family: 'Playfair Display SC', serif;  font-weight: bold;
+  color: #eceff1;
   font-size: 120%;
 }
 
-.location:hover {
-  color:green;
-}
 
 .interface {
   color: grey;
@@ -37,8 +48,8 @@ div {
 }
 
 h1 {
-  font-family: 'La Belle Aurore', cursive;
-  color: white;
+  font-family: 'Playfair Display SC', serif;
+  color: #eceff1;
   font-size: 4em;
   text-align: center;
   padding: 0 0;

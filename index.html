@@ -2,9 +2,13 @@
 <html ng-app="ngMap">
   <head>
 
+
+
+
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="styles/style.css" />
-  <link href='https://fonts.googleapis.com/css?family=La+Belle+Aurore' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Playfair+Display+SC:400,700italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
 
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 
@@ -30,7 +34,7 @@
   
   <div ng-controller="MapController as vm">
     <div >
-      <ng-map id="foo" zoom="13" center="37.774546, -122.433523" default-style="true" lazy-init="true">
+      <ng-map id="foo" zoom="12" center="37.774546, -122.433523" default-style="true" lazy-init="true">
         <heatmap-layer id="foo" data="rideData"></heatmap>
       </ng-map>
     </div>
@@ -39,16 +43,19 @@
       <p>{{statusMessage}}</p>
     </div>
 
-    <button ng-disabled="mapIncomplete" ng-click="vm.initMap('foo')">Ahoy</button>
+    <div class="buttonContainer">
+      
+      <button class="waves-effect waves-light btn" ng-disabled="mapIncomplete" ng-click="vm.initMap('foo')">Ahoy</button>
 
-    <button ng-disabled="noHeading" ng-click="postLoc()">Avast</button>
+      <button class="waves-effect waves-light btn" ng-disabled="noHeading" ng-click="postLoc()">Avast</button>
+    </div>
 
 
-    <div class="output" ng-repeat="place in data.destinations | orderBy: 'low'">
-      <div class="location">
+    <div class="row" ng-repeat="place in data.destinations | orderBy: 'low'">
+      <div class="col s4">
         <div class="name">{{place.name}}</div>
-        <div class="time">Time: <span class="estimate">{{place.timeEstimate}}</span></div>
-        <div class="fare">Fare Estimate: <span class="estimate">{{place.priceEstimate}}</span></div> 
+        <div ng-hide="avasted" class="ng-hide">Time: <span class="estimate">{{place.timeEstimate}}</span></div>
+        <div ng-hide="avasted" class="ng-hide">Fare Estimate: <span class="estimate">{{place.priceEstimate}}</span></div> 
       </div>
     </div> 
 
