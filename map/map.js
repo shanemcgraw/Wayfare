@@ -11,14 +11,24 @@ angular.module('ngMap')
     var lat = ride.latitude;
     var long = ride.longitude;
 
-    var priceAvg = Math.ceil(.5 * (parseInt(ride.high) - parseInt(ride.low))) * 20;
+    var priceAvg = Math.ceil(.5 * (parseInt(ride.high) - parseInt(ride.low))) * 100;
 
     for(var i=0; i<priceAvg; i++){
-    	var polish = (.000010 * (Math.random() * 2) + 1);
-
+    	var polish = (.001010 * ((Math.random() * 2) + 1));
     	newPoint(lat - polish, long - polish)
-      newPoint(lat, long);
       newPoint(lat + polish, long + polish)
+      newPoint(lat + polish, long - polish)
+      newPoint(lat - polish, long + polish)
+
+      newPoint(lat, long + polish)
+      newPoint(lat, long - polish)
+      newPoint(lat + polish, long)
+      newPoint(lat - polish, long)
+
+
+    }
+    for(var i=0; i<priceAvg; i++){
+      newPoint(lat, long);    	
     }
   };
 
