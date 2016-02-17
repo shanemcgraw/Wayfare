@@ -40,20 +40,16 @@ angular.module('ngMap')
 
   $scope.avasted = true;
   $scope.data = {
-  	destinations: [{
-			name: "Tartine Bakery",
-			latitude: 37.761418,
-			longitude: -122.424104
-		},
+  	destinations: [
 		{
 			name: "Academy of Sciences",
 			latitude: 37.769458,
 			longitude: -122.466352
 		},
 		{
-			name: "The Painted Ladies",
-			latitude: 37.776103,
-			longitude: -122.432738
+			name: "Twin Peaks",
+			latitude: 37.751754,
+			longitude: -122.447252
 		},
 		{
 			name: "Coit Tower",
@@ -61,7 +57,7 @@ angular.module('ngMap')
 			longitude: -122.405865
 		},
 		{
-			name: "Golden Gate Bridge",
+			name: "Fort Point",
 			latitude: 37.810426,
 			longitude: -122.476865
 		},
