@@ -4,14 +4,14 @@ angular.module('ngMap')
   
   vm.initMap = function(mapId) {
     vm.map = NgMap.initMap(mapId);
-    vm.heatmap.set('radius', 40);
+    vm.heatmap.set('radius', 5);
   }
 
   var torch = function (ride) {
     var lat = ride.latitude;
     var long = ride.longitude;
 
-    var priceAvg = Math.ceil(.5 * (parseInt(ride.high) - parseInt(ride.low))) * 10;
+    var priceAvg = Math.ceil(.5 * (parseInt(ride.high) - parseInt(ride.low))) * 20;
 
     for(var i=0; i<priceAvg; i++){
     	var polish = (.000010 * (Math.random() * 2) + 1);
@@ -28,6 +28,7 @@ angular.module('ngMap')
     
   };
 
+  $scope.avasted = true;
   $scope.data = {
   	destinations: [{
 			name: "Tartine Bakery",
@@ -118,7 +119,7 @@ angular.module('ngMap')
 
 	  	$scope.$apply(function(){
 	  		$scope.number = 0;
-	  		$scope.statusMessage = "We have a heading!";
+	  		$scope.statusMessage = "Ready to chart a course...";
 	  		$scope.noHeading = false;
 	  	});
 
@@ -142,6 +143,7 @@ angular.module('ngMap')
 	  		    }
 	  		  })
 	  		  .then(function (response) {
+	  		  	$scope.avasted = false;
 	  		    loc.timeEstimate = (response.data.prices[0].duration / 60) + " minutes";
 	  		    loc.priceEstimate = (response.data.prices[0].estimate);
 	  		    loc.low = response.data.prices[0].low_estimate;
@@ -149,6 +151,7 @@ angular.module('ngMap')
 
 	  		    torch(loc);
 	  		    if(i === destinations.length - 1){
+	  		    	$scope.statusMessage = "Ready to set sail";
 	  		    	$scope.mapIncomplete = false;
 	  		    }
 	  		  })
